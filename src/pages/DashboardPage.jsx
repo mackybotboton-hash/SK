@@ -34,7 +34,7 @@ export default function DashboardPage() {
     <div className="page-enter">
       <PageHeader 
         title="Dashboard" 
-        description="Overview of SKTrack projects, budgets, and activities." 
+        description="Overview of DIAMOND projects, budgets, and activities." 
       />
       
       {/* Summary Cards */}
