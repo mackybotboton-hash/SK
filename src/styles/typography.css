@@ -1,15 +1,16 @@
 /**
  * SKTrack — Typography System
- * Quicksand for Headings & Numbers (rounded letterforms)
- * Inter for Body & Labels (clean readability)
+ * Plus Jakarta Sans for Headings & Numbers (sharp, geometric display)
+ * Inter for Body & Labels (ultimate legibility)
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   color: var(--text-primary);
   margin-top: 0;
+  letter-spacing: -0.02em;
 }
 
 body, input, button, select, textarea {
@@ -19,18 +20,20 @@ body, input, button, select, textarea {
 /* ─── Headings ─── */
 .heading-display {
   font-size: var(--text-5xl);
-  font-weight: 700;
+  font-weight: 800;
   font-family: var(--font-heading);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   color: var(--text-primary);
+  line-height: var(--leading-tight);
 }
 
 .heading-page {
   font-size: var(--text-3xl);
-  font-weight: 700;
+  font-weight: 800;
   font-family: var(--font-heading);
   color: var(--text-primary);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.025em;
+  line-height: var(--leading-tight);
 }
 
 .heading-section {
@@ -38,6 +41,7 @@ body, input, button, select, textarea {
   font-weight: 700;
   font-family: var(--font-heading);
   color: var(--text-primary);
+  letter-spacing: -0.015em;
 }
 
 .heading-card {
@@ -45,6 +49,7 @@ body, input, button, select, textarea {
   font-weight: 700;
   font-family: var(--font-heading);
   color: var(--text-primary);
+  letter-spacing: -0.01em;
 }
 
 /* ─── Body Text ─── */
@@ -58,7 +63,7 @@ body, input, button, select, textarea {
 .text-small {
   font-size: var(--text-sm);
   font-family: var(--font-body);
-  color: var(--text-secondary);
+  color: var(--text-tertiary);
 }
 
 .text-caption {
@@ -67,7 +72,7 @@ body, input, button, select, textarea {
   color: var(--text-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  font-weight: var(--font-semibold);
+  font-weight: 600;
 }
 
 .text-mono {
@@ -96,8 +101,9 @@ body, input, button, select, textarea {
 .font-medium   { font-weight: 500; }
 .font-semibold { font-weight: 600; }
 .font-bold     { font-weight: 700; }
+.font-extrabold{ font-weight: 800; }
 
-/* ─── Number / Currency Display (Quicksand for numbers!) ─── */
+/* ─── Number / Currency Display ─── */
 .text-currency {
   font-family: var(--font-heading);
   font-weight: 700;
@@ -108,17 +114,18 @@ body, input, button, select, textarea {
 .text-currency-large {
   font-size: var(--text-3xl);
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 800;
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
 }
 
 .text-stat-value {
   font-size: var(--text-2xl);
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text-primary);
   font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
 }
 
 .text-stat-label {
@@ -126,6 +133,6 @@ body, input, button, select, textarea {
   font-family: var(--font-body);
   color: var(--text-tertiary);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   font-weight: 600;
 }

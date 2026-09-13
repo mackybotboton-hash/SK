@@ -1,55 +1,47 @@
 /**
  * SKTrack — CSS Design System Variables
- * Theme: Soft Navy & Gold (Official SK/Barangay Branding)
- * Style: Tactile Claymorphism with Inset & Convex states
+ * Theme: Ultra-Sleek Modern SaaS (Linear / Stripe / Apple Aesthetic)
+ * Crisp typography, ambient elevation shadows, clean borders, vibrant accents.
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  /* ─── Color Palette — Soft Navy & Muted Gold ─── */
-  --color-primary-50:  #f0f3f8;
-  --color-primary-100: #dbe2ed;
-  --color-primary-200: #b7c5da;
-  --color-primary-300: #8ba2c2;
-  --color-primary-400: #5c7aa3;
-  --color-primary-500: #3F5578;  /* Core Deep Muted Navy */
-  --color-primary-600: #344766;
-  --color-primary-700: #293852;
-  --color-primary-800: #1f2a3e;
-  --color-primary-900: #141c2a;
+  /* ─── Color Palette — Royal Navy & Philippine Sun Gold ─── */
+  --color-primary-50:  #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #2563eb;  /* Sleek Royal Blue */
+  --color-primary-600: #1d4ed8;
+  --color-primary-700: #1e40af;
+  --color-primary-800: #1e3a8a;  /* Deep Navy */
+  --color-primary-900: #0f172a;  /* Slate Navy */
   --color-primary: var(--color-primary-500);
 
-  /* ─── Muted Gold Accent ─── */
-  --color-accent-50:  #faf6ee;
-  --color-accent-100: #f2e7d3;
-  --color-accent-200: #e4d0a9;
-  --color-accent-300: #d6b87e;
-  --color-accent-400: #cfa868;
-  --color-accent-500: #C9A15C;  /* Core Muted Gold */
-  --color-accent-600: #b08845;
-  --color-accent-700: #8f6c31;
-  --color-accent-800: #6f5223;
-  --color-accent-900: #523b17;
+  /* ─── Philippine Sun Gold Accent ─── */
+  --color-accent-50:  #fffbeb;
+  --color-accent-100: #fef3c7;
+  --color-accent-200: #fde68a;
+  --color-accent-300: #fcd34d;
+  --color-accent-400: #fbbf24;
+  --color-accent-500: #f59e0b;  /* Core Vibrant Gold */
+  --color-accent-600: #d97706;
+  --color-accent-700: #b45309;
   --color-accent: var(--color-accent-500);
 
-  /* ─── Semantic Colors ─── */
-  --color-success:      #6B9A82;  /* Soft Muted Sage Green */
-  --color-success-dark: #547d69;
-  --color-warning:      #D99B56;  /* Soft Warm Amber */
-  --color-warning-dark: #B87e3d;
-  --color-danger:       #D96B6B;  /* Soft Coral Red */
-  --color-danger-dark:  #b84d4d;
-  --color-info:         #6289B5;  /* Soft Slate Blue */
-  --color-info-dark:    #4a6e97;
+  /* ─── Status Semantics ─── */
+  --color-success:      #10b981;  /* Emerald Green */
+  --color-success-dark: #059669;
+  --color-warning:      #f59e0b;  /* Amber */
+  --color-warning-dark: #d97706;
+  --color-danger:       #ef4444;  /* Rose Red */
+  --color-danger-dark:  #dc2626;
+  --color-info:         #3b82f6;  /* Sapphire Blue */
+  --color-info-dark:    #2563eb;
 
-  /* Chart Pastel Colors */
-  --chart-allocated-start: #7A9BBD;
-  --chart-allocated-end:   #5C7C9E;
-  --chart-spent-start:     #E8A87C;
-  --chart-spent-end:       #D68B56;
-
-  /* Aliases used in JSX */
+  /* Aliases */
   --primary: var(--color-primary-500);
   --accent:  var(--color-accent-500);
   --danger:  var(--color-danger);
@@ -57,75 +49,60 @@
   --warning: var(--color-warning);
   --info:    var(--color-info);
 
-  /* ─── Canvas & Surface Backgrounds ─── */
-  --bg-body:            #E8EBF2;  /* Soft Navy Base Canvas */
-  --bg-surface:         #F5F7FB;  /* Pillowy Surface Cards */
-  --bg-surface-elevated:#FFFFFF;
-  --bg-surface-hover:   #EEF2F8;
-  --bg-surface-active:  #E2E8F2;
-  --bg-sidebar:         #3F5578;  /* Deep Navy Sidebar */
-  --bg-card:            #F5F7FB;  /* Pillowy Clay Card */
-  --bg-card-hover:      #FFFFFF;
-  --bg-input:           #E8EBF2;
-  --bg-input-focus:     #F5F7FB;
-  --bg-overlay:         rgba(51, 59, 77, 0.45);
-  --bg-modal:           #F5F7FB;
-  --bg-elevated:        #FFFFFF;
+  /* ─── Surfaces & Backgrounds ─── */
+  --bg-body:            #f8fafc;  /* Clean Slate Base Canvas */
+  --bg-surface:         #ffffff;  /* Crisp White Card Surface */
+  --bg-surface-elevated:#ffffff;
+  --bg-surface-hover:   #f1f5f9;
+  --bg-surface-active:  #e2e8f0;
+  --bg-sidebar:         #0f172a;  /* Sleek Dark Navy Sidebar */
+  --bg-card:            #ffffff;
+  --bg-card-hover:      #ffffff;
+  --bg-input:           #ffffff;
+  --bg-input-focus:     #ffffff;
+  --bg-overlay:         rgba(15, 23, 42, 0.45);
+  --bg-modal:           #ffffff;
+  --bg-elevated:        #ffffff;
 
-  /* ─── Clay Shadow System — Consistent Soft Shadow Pair ─── */
-  /* Convex / Raised Clay State */
-  --clay-shadow-outer:
-    6px 6px 14px rgba(51, 59, 77, 0.12),
-    -6px -6px 14px #FFFFFF;
-  --clay-shadow-outer-sm:
-    4px 4px 9px rgba(51, 59, 77, 0.10),
-    -4px -4px 9px #FFFFFF;
-  --clay-shadow-outer-lg:
-    10px 10px 24px rgba(51, 59, 77, 0.15),
-    -8px -8px 20px #FFFFFF;
-  --clay-shadow-inner:
-    inset 2px 2px 4px rgba(255, 255, 255, 0.9),
-    inset -2px -2px 4px rgba(51, 59, 77, 0.06);
+  /* ─── Modern SaaS Shadow Elevation System ─── */
+  --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.08), 0 1px 2px -1px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -2px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 10px 25px -3px rgba(15, 23, 42, 0.1), 0 4px 10px -4px rgba(15, 23, 42, 0.06);
+  --shadow-xl: 0 20px 35px -5px rgba(15, 23, 42, 0.14), 0 8px 16px -6px rgba(15, 23, 42, 0.08);
 
-  /* Inset / Pressed Clay State (Search, Active Tabs, Inset Controls) */
-  --clay-shadow-pressed:
-    inset 3px 3px 6px rgba(51, 59, 77, 0.14),
-    inset -3px -3px 6px #FFFFFF;
-  --clay-shadow-pressed-deep:
-    inset 4px 4px 10px rgba(51, 59, 77, 0.18),
-    inset -4px -4px 10px #FFFFFF;
+  --shadow-glow-primary: 0 8px 25px -4px rgba(37, 99, 235, 0.35);
+  --shadow-glow-accent:  0 8px 25px -4px rgba(245, 158, 11, 0.35);
 
-  /* Primary Button Clay */
-  --clay-primary:        var(--color-primary-500);
-  --clay-primary-shadow:
-    6px 6px 14px rgba(63, 85, 120, 0.3),
-    -4px -4px 10px #FFFFFF,
-    inset 2px 2px 4px rgba(255, 255, 255, 0.3),
-    inset -2px -2px 4px rgba(20, 28, 42, 0.2);
-  --clay-primary-pressed:
-    inset 4px 4px 8px rgba(20, 28, 42, 0.35),
-    inset -2px -2px 5px rgba(255, 255, 255, 0.2);
+  /* Legacy shadow alias compatibility */
+  --clay-shadow-outer:    var(--shadow-md);
+  --clay-shadow-outer-sm: var(--shadow-sm);
+  --clay-shadow-outer-lg: var(--shadow-lg);
+  --clay-shadow-inner:    none;
+  --clay-shadow-pressed:  inset 0 2px 4px 0 rgba(15, 23, 42, 0.06);
+  --clay-primary-shadow:  var(--shadow-glow-primary);
+  --clay-primary-pressed: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 
   /* ─── Text & Ink ─── */
-  --text-primary:   #333B4D;   /* Dark Navy Ink */
-  --text-secondary: #3F5578;   /* Muted Navy */
-  --text-tertiary:  #5A6982;   /* Slate Gray */
-  --text-muted:     #7E8B9F;   /* Soft Muted Ink */
-  --text-inverse:   #FFFFFF;
+  --text-primary:   #0f172a;   /* Slate 900 */
+  --text-secondary: #334155;   /* Slate 700 */
+  --text-tertiary:  #64748b;   /* Slate 500 */
+  --text-muted:     #94a3b8;   /* Slate 400 */
+  --text-inverse:   #ffffff;
   --text-link:      var(--color-primary-500);
   --text-link-hover:var(--color-primary-600);
-  --text-body:      #333B4D;
+  --text-body:      #334155;
 
   /* Sidebar Text */
-  --text-sidebar:        rgba(255,255,255,0.92);
-  --text-sidebar-muted:  rgba(255,255,255,0.55);
-  --text-sidebar-active: #3F5578;
+  --text-sidebar:        rgba(255,255,255,0.85);
+  --text-sidebar-muted:  rgba(255,255,255,0.45);
+  --text-sidebar-active: #ffffff;
 
-  /* ─── Borders ─── */
-  --border-default: rgba(63, 85, 120, 0.12);
-  --border-light:   rgba(255,255,255,0.85);
-  --border-medium:  rgba(63, 85, 120, 0.2);
-  --border-strong:  rgba(63, 85, 120, 0.35);
+  /* ─── Modern Crisp Borders ─── */
+  --border-default: #e2e8f0;   /* Slate 200 */
+  --border-light:   #f1f5f9;   /* Slate 100 */
+  --border-medium:  #cbd5e1;   /* Slate 300 */
+  --border-strong:  #94a3b8;   /* Slate 400 */
   --border-focus:   var(--color-primary-500);
 
   /* ─── Spacing ─── */
@@ -141,7 +118,7 @@
   --space-12: 3rem;
 
   /* ─── Typography Fonts ─── */
-  --font-heading: 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-family:  var(--font-body);
   --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
@@ -156,35 +133,28 @@
   --text-4xl:  2.25rem;
   --text-5xl:  3rem;
 
-  --leading-tight:   1.25;
+  --leading-tight:   1.2;
   --leading-normal:  1.5;
-  --leading-relaxed: 1.75;
+  --leading-relaxed: 1.65;
 
   --font-normal:   400;
   --font-medium:   500;
   --font-semibold: 600;
   --font-bold:     700;
-  --font-extrabold:700;
+  --font-extrabold:800;
 
-  /* ─── Border Radius — Pillowy 16px to 26px ─── */
-  --radius-sm:  14px;
-  --radius-md:  18px;
-  --radius-lg:  22px;
-  --radius-xl:  26px;
-  --radius-2xl: 32px;
+  /* ─── Border Radius System ─── */
+  --radius-sm:  8px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+  --radius-xl:  20px;
+  --radius-2xl: 24px;
   --radius-full:9999px;
 
-  /* ─── Shadows (aliased) ─── */
-  --shadow-sm:           var(--clay-shadow-outer-sm);
-  --shadow-md:           var(--clay-shadow-outer);
-  --shadow-lg:           var(--clay-shadow-outer-lg);
-  --shadow-glow-primary: 0 8px 20px rgba(63, 85, 120, 0.25);
-  --shadow-glow-accent:  0 8px 20px rgba(201, 161, 92, 0.3);
-
   /* ─── Transitions ─── */
-  --transition-fast:   150ms ease;
-  --transition-normal: 250ms ease;
-  --transition-slow:   350ms ease;
+  --transition-fast:   150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:   350ms cubic-bezier(0.4, 0, 0.2, 1);
 
   /* ─── Layout ─── */
   --sidebar-width:           260px;
