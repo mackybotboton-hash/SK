@@ -149,7 +149,50 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 3.5rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Official SK Officials Photo Showcase */
+.landing-officials-photo-container {
+  margin: 0 auto 3rem;
+  max-width: 780px;
+  width: 100%;
+}
+
+.landing-officials-photo-wrapper {
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-default);
+  overflow: hidden;
+  transition: transform var(--transition-normal);
+}
+
+.landing-officials-photo-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.landing-officials-hero-img {
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+  display: block;
+}
+
+.landing-officials-photo-caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-top: 0.85rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
 }
 
 /* Quick Stats */

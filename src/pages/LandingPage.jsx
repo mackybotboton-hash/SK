@@ -74,6 +74,21 @@ export default function LandingPage() {
             </a>
           </div>
 
+          {/* Official SK Officials Group Photo Showcase */}
+          <div className="landing-officials-photo-container">
+            <div className="landing-officials-photo-wrapper card">
+              <img 
+                src="/sk-officials.png" 
+                alt="Sangguniang Kabataan Barangay Diatagon Officials" 
+                className="landing-officials-hero-img"
+              />
+              <div className="landing-officials-photo-caption">
+                <MdVerified size={18} className="text-primary-color" />
+                <span>Sangguniang Kabataan Council — Barangay Diatagon, Lianga, Surigao del Sur</span>
+              </div>
+            </div>
+          </div>
+
           {/* Social & Location Quick Stats */}
           <div className="landing-stats-grid">
             <div className="landing-stat-card">
