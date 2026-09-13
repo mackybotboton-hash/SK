@@ -36,10 +36,10 @@ export default function LoginPage() {
       <div className="login-card glass-panel animate-fade-in-up">
         <div className="login-header">
           <div className="login-logo-container">
-             <div className="login-logo">SK</div>
+            <img src="/logo.png" alt="SK Diatagon Logo" className="login-logo-img" />
           </div>
           <h1>{APP_CONFIG.APP_NAME}</h1>
-          <p>{APP_CONFIG.APP_TAGLINE}</p>
+          <p>Barangay Diatagon SK Management System</p>
         </div>
 
         {error && <div style={{ color: 'var(--danger)', marginBottom: '1rem', textAlign: 'center', background: 'rgba(239, 68, 68, 0.1)', padding: '0.5rem', borderRadius: '4px' }}>{error}</div>}

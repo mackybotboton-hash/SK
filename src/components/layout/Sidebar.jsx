@@ -34,12 +34,12 @@ export default function Sidebar({ collapsed, mobileOpen, onToggle, onMobileClose
       {/* Logo */}
       <div className="sidebar-logo">
         <div className="sidebar-logo-icon">
-          <span className="sidebar-logo-letter">SK</span>
+          <img src="/logo.png" alt="SK Diatagon Logo" className="sidebar-logo-img" />
         </div>
         {!collapsed && (
           <div className="sidebar-logo-text">
             <span className="sidebar-app-name">{APP_CONFIG.APP_NAME}</span>
-            <span className="sidebar-app-tagline">Management System</span>
+            <span className="sidebar-app-tagline">Barangay Diatagon</span>
           </div>
         )}
       </div>
