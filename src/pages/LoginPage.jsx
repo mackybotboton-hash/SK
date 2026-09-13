@@ -6,7 +6,7 @@ import { APP_CONFIG } from '../utils/constants';
 import './LoginPage.css';
 
 /**
- * LoginPage — Authenticates the user into DIAMOND.
+ * LoginPage — Authenticates the user into SKHub.
  */
 export default function LoginPage() {
   const [isSignUp, setIsSignUp] = useState(false);

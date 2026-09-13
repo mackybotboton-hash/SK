@@ -357,7 +357,7 @@ export const PROJECT_CATEGORIES = [
 
 // ─── App Config ───────────────────────────────────────────
 export const APP_CONFIG = {
-  APP_NAME: 'DIAMOND',
+  APP_NAME: 'SKHub',
   APP_TAGLINE: 'SK Project, Budget & Records Management',
   CURRENCY: '₱',
   DATE_FORMAT: 'MMM dd, yyyy',
