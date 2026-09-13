@@ -1,0 +1,186 @@
+/**
+ * SKTrack — TopBar Styles (Soft Navy & Gold Theme)
+ * Consistent clay topbar floating above the canvas.
+ */
+
+.topbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: var(--sidebar-width);
+  height: var(--topbar-height);
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-default);
+  box-shadow:
+    0 4px 14px rgba(51, 59, 77, 0.08),
+    0 1px 0 #ffffff inset;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  z-index: var(--z-sticky);
+  transition: left var(--transition-normal);
+}
+
+.sidebar-collapsed ~ .app-main .topbar {
+  left: var(--sidebar-collapsed-width);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.topbar-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.topbar-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  color: var(--text-tertiary);
+  transition: all var(--transition-fast);
+  background: var(--bg-surface);
+  border: none;
+  box-shadow: var(--clay-shadow-outer-sm), var(--clay-shadow-inner);
+  cursor: pointer;
+}
+
+.topbar-menu-btn:hover {
+  color: var(--text-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--clay-shadow-outer), var(--clay-shadow-inner);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* ─── Search Bar (Pressed Inset Clay Effect) ─── */
+.topbar-search { position: relative; }
+
+.topbar-search-icon {
+  position: absolute;
+  left: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+
+.topbar-search-input {
+  padding: var(--space-2) var(--space-3);
+  padding-left: var(--space-10);
+  background: var(--bg-surface);
+  border: 1.5px solid rgba(63, 85, 120, 0.12);
+  border-radius: var(--radius-full);
+  color: var(--text-body);
+  font-size: var(--text-sm);
+  font-family: var(--font-body);
+  font-weight: 500;
+  width: 240px;
+  transition: all var(--transition-normal);
+  box-shadow: var(--clay-shadow-pressed);
+}
+
+.topbar-search-input:focus {
+  outline: none;
+  border-color: var(--color-primary-500);
+  width: 320px;
+  background: #ffffff;
+  box-shadow: var(--clay-shadow-pressed), 0 0 0 3px rgba(63,85,120,0.12);
+}
+
+.topbar-search-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ─── Icon Buttons (Convex Raised Clay) ─── */
+.topbar-icon-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  color: var(--text-tertiary);
+  transition: all var(--transition-fast);
+  background: var(--bg-surface);
+  border: none;
+  box-shadow: var(--clay-shadow-outer-sm), var(--clay-shadow-inner);
+  cursor: pointer;
+}
+
+.topbar-icon-btn:hover {
+  color: var(--text-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--clay-shadow-outer), var(--clay-shadow-inner);
+}
+
+.topbar-icon-btn:active {
+  transform: translateY(1px);
+  box-shadow: var(--clay-shadow-pressed) !important;
+}
+
+.topbar-notification-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--color-accent-500);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 6px rgba(201,161,92,0.6);
+}
+
+/* ─── User Profile Pill ─── */
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: var(--bg-surface);
+  box-shadow: var(--clay-shadow-outer-sm), var(--clay-shadow-inner);
+}
+
+.topbar-user:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--clay-shadow-outer), var(--clay-shadow-inner);
+}
+
+.topbar-user-info { display: flex; flex-direction: column; }
+
+.topbar-user-name {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.topbar-user-role {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 1024px) {
+  .topbar { left: 0; }
+  .topbar-menu-btn { display: flex; }
+}

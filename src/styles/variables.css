@@ -1,0 +1,194 @@
+/**
+ * SKTrack — CSS Design System Variables
+ * Theme: Soft Navy & Gold (Official SK/Barangay Branding)
+ * Style: Tactile Claymorphism with Inset & Convex states
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ─── Color Palette — Soft Navy & Muted Gold ─── */
+  --color-primary-50:  #f0f3f8;
+  --color-primary-100: #dbe2ed;
+  --color-primary-200: #b7c5da;
+  --color-primary-300: #8ba2c2;
+  --color-primary-400: #5c7aa3;
+  --color-primary-500: #3F5578;  /* Core Deep Muted Navy */
+  --color-primary-600: #344766;
+  --color-primary-700: #293852;
+  --color-primary-800: #1f2a3e;
+  --color-primary-900: #141c2a;
+  --color-primary: var(--color-primary-500);
+
+  /* ─── Muted Gold Accent ─── */
+  --color-accent-50:  #faf6ee;
+  --color-accent-100: #f2e7d3;
+  --color-accent-200: #e4d0a9;
+  --color-accent-300: #d6b87e;
+  --color-accent-400: #cfa868;
+  --color-accent-500: #C9A15C;  /* Core Muted Gold */
+  --color-accent-600: #b08845;
+  --color-accent-700: #8f6c31;
+  --color-accent-800: #6f5223;
+  --color-accent-900: #523b17;
+  --color-accent: var(--color-accent-500);
+
+  /* ─── Semantic Colors ─── */
+  --color-success:      #6B9A82;  /* Soft Muted Sage Green */
+  --color-success-dark: #547d69;
+  --color-warning:      #D99B56;  /* Soft Warm Amber */
+  --color-warning-dark: #B87e3d;
+  --color-danger:       #D96B6B;  /* Soft Coral Red */
+  --color-danger-dark:  #b84d4d;
+  --color-info:         #6289B5;  /* Soft Slate Blue */
+  --color-info-dark:    #4a6e97;
+
+  /* Chart Pastel Colors */
+  --chart-allocated-start: #7A9BBD;
+  --chart-allocated-end:   #5C7C9E;
+  --chart-spent-start:     #E8A87C;
+  --chart-spent-end:       #D68B56;
+
+  /* Aliases used in JSX */
+  --primary: var(--color-primary-500);
+  --accent:  var(--color-accent-500);
+  --danger:  var(--color-danger);
+  --success: var(--color-success);
+  --warning: var(--color-warning);
+  --info:    var(--color-info);
+
+  /* ─── Canvas & Surface Backgrounds ─── */
+  --bg-body:            #E8EBF2;  /* Soft Navy Base Canvas */
+  --bg-surface:         #F5F7FB;  /* Pillowy Surface Cards */
+  --bg-surface-elevated:#FFFFFF;
+  --bg-surface-hover:   #EEF2F8;
+  --bg-surface-active:  #E2E8F2;
+  --bg-sidebar:         #3F5578;  /* Deep Navy Sidebar */
+  --bg-card:            #F5F7FB;  /* Pillowy Clay Card */
+  --bg-card-hover:      #FFFFFF;
+  --bg-input:           #E8EBF2;
+  --bg-input-focus:     #F5F7FB;
+  --bg-overlay:         rgba(51, 59, 77, 0.45);
+  --bg-modal:           #F5F7FB;
+  --bg-elevated:        #FFFFFF;
+
+  /* ─── Clay Shadow System — Consistent Soft Shadow Pair ─── */
+  /* Convex / Raised Clay State */
+  --clay-shadow-outer:
+    6px 6px 14px rgba(51, 59, 77, 0.12),
+    -6px -6px 14px #FFFFFF;
+  --clay-shadow-outer-sm:
+    4px 4px 9px rgba(51, 59, 77, 0.10),
+    -4px -4px 9px #FFFFFF;
+  --clay-shadow-outer-lg:
+    10px 10px 24px rgba(51, 59, 77, 0.15),
+    -8px -8px 20px #FFFFFF;
+  --clay-shadow-inner:
+    inset 2px 2px 4px rgba(255, 255, 255, 0.9),
+    inset -2px -2px 4px rgba(51, 59, 77, 0.06);
+
+  /* Inset / Pressed Clay State (Search, Active Tabs, Inset Controls) */
+  --clay-shadow-pressed:
+    inset 3px 3px 6px rgba(51, 59, 77, 0.14),
+    inset -3px -3px 6px #FFFFFF;
+  --clay-shadow-pressed-deep:
+    inset 4px 4px 10px rgba(51, 59, 77, 0.18),
+    inset -4px -4px 10px #FFFFFF;
+
+  /* Primary Button Clay */
+  --clay-primary:        var(--color-primary-500);
+  --clay-primary-shadow:
+    6px 6px 14px rgba(63, 85, 120, 0.3),
+    -4px -4px 10px #FFFFFF,
+    inset 2px 2px 4px rgba(255, 255, 255, 0.3),
+    inset -2px -2px 4px rgba(20, 28, 42, 0.2);
+  --clay-primary-pressed:
+    inset 4px 4px 8px rgba(20, 28, 42, 0.35),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.2);
+
+  /* ─── Text & Ink ─── */
+  --text-primary:   #333B4D;   /* Dark Navy Ink */
+  --text-secondary: #3F5578;   /* Muted Navy */
+  --text-tertiary:  #5A6982;   /* Slate Gray */
+  --text-muted:     #7E8B9F;   /* Soft Muted Ink */
+  --text-inverse:   #FFFFFF;
+  --text-link:      var(--color-primary-500);
+  --text-link-hover:var(--color-primary-600);
+  --text-body:      #333B4D;
+
+  /* Sidebar Text */
+  --text-sidebar:        rgba(255,255,255,0.92);
+  --text-sidebar-muted:  rgba(255,255,255,0.55);
+  --text-sidebar-active: #3F5578;
+
+  /* ─── Borders ─── */
+  --border-default: rgba(63, 85, 120, 0.12);
+  --border-light:   rgba(255,255,255,0.85);
+  --border-medium:  rgba(63, 85, 120, 0.2);
+  --border-strong:  rgba(63, 85, 120, 0.35);
+  --border-focus:   var(--color-primary-500);
+
+  /* ─── Spacing ─── */
+  --space-0:  0;
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* ─── Typography Fonts ─── */
+  --font-heading: 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family:  var(--font-body);
+  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+  --text-5xl:  3rem;
+
+  --leading-tight:   1.25;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.75;
+
+  --font-normal:   400;
+  --font-medium:   500;
+  --font-semibold: 600;
+  --font-bold:     700;
+  --font-extrabold:700;
+
+  /* ─── Border Radius — Pillowy 16px to 26px ─── */
+  --radius-sm:  14px;
+  --radius-md:  18px;
+  --radius-lg:  22px;
+  --radius-xl:  26px;
+  --radius-2xl: 32px;
+  --radius-full:9999px;
+
+  /* ─── Shadows (aliased) ─── */
+  --shadow-sm:           var(--clay-shadow-outer-sm);
+  --shadow-md:           var(--clay-shadow-outer);
+  --shadow-lg:           var(--clay-shadow-outer-lg);
+  --shadow-glow-primary: 0 8px 20px rgba(63, 85, 120, 0.25);
+  --shadow-glow-accent:  0 8px 20px rgba(201, 161, 92, 0.3);
+
+  /* ─── Transitions ─── */
+  --transition-fast:   150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow:   350ms ease;
+
+  /* ─── Layout ─── */
+  --sidebar-width:           260px;
+  --sidebar-collapsed-width: 72px;
+  --topbar-height:           64px;
+  --content-max-width:       1400px;
+}
