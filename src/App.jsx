@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import AppLayout from './components/layout/AppLayout';
 import LoginPage from './pages/LoginPage';
+import LandingPage from './pages/LandingPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import PendingApprovalPage from './pages/PendingApprovalPage';
 import { authController } from './controllers/AuthController';
@@ -76,7 +77,10 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Public Route */}
+        {/* Public Landing Route for Visitors */}
+        <Route path="/landing" element={<LandingPage />} />
+
+        {/* Public Login Route */}
         <Route
           path="/login"
           element={
@@ -96,8 +100,17 @@ export default function App() {
           }
         />
 
-        {/* Protected Routes */}
-        <Route element={<ProtectedRoute />}>
+        {/* Protected Portal Routes */}
+        <Route
+          path="/"
+          element={
+            isAuthenticated ? (
+              <ProtectedRoute />
+            ) : (
+              <LandingPage />
+            )
+          }
+        >
           <Route element={<AppLayout onLogout={handleLogout} />}>
             <Route index element={<DashboardPage />} />
             
