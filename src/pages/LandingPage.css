@@ -279,7 +279,7 @@
   border: 1px solid var(--lp-border);
   overflow: hidden;
   transition: transform 0.12s ease;
-  will-change: transform;
+  /* Removed will-change: transform; which causes GPU rasterization blur on high-DPI screens */
 }
 
 .landing-officials-hero-img {
@@ -287,8 +287,12 @@
   height: auto;
   max-height: 440px;
   object-fit: cover;
+  object-position: top center;
   border-radius: 10px;
   display: block;
+  /* Force high-quality scaling */
+  image-rendering: high-quality;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .landing-officials-photo-caption {

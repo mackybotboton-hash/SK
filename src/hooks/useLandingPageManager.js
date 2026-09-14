@@ -5,6 +5,7 @@ const STORAGE_KEY = 'sk_landing_page_data';
 const DEFAULT_DATA = {
   heroTitle: 'Empowering the Youth of Barangay Diatagon',
   heroDesc: 'Welcome to the centralized monitoring portal for Barangay Diatagon, Lianga, Surigao del Sur. Streamlining SK project proposals, 10% Barangay General Fund management, and youth development records.',
+  heroImage: '/sk-officials.png',
   facebookLink: 'https://www.facebook.com/sk.diatagon',
   facebookFollowers: '1.5K+',
   location: 'Purok 2, Diatagon, Lianga, Surigao del Sur, 8307',

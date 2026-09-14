@@ -268,7 +268,7 @@ export default function LandingPage() {
                 onMouseLeave={handlePhotoMouseLeave}
               >
                 <img
-                  src="/sk-officials.png"
+                  src={landingData?.heroImage || '/sk-officials.png'}
                   alt="Sangguniang Kabataan Barangay Diatagon Officials"
                   className="landing-officials-hero-img"
                 />

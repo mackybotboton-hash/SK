@@ -2,17 +2,20 @@ import React, { useState, useRef } from 'react';
 import PageHeader from '../components/layout/PageHeader';
 import useLandingPageManager from '../hooks/useLandingPageManager';
 import { MdEdit, MdDelete, MdAdd, MdSave, MdCheck } from 'react-icons/md';
+import storageService from '../services/StorageService';
 
 export default function LandingPageManager() {
   const { landingData, updateHeroContent, addOfficial, updateOfficial, removeOfficial } = useLandingPageManager();
   
   const [activeTab, setActiveTab] = useState('hero');
   const [isSaved, setIsSaved] = useState(false);
+  const [uploadingHero, setUploadingHero] = useState(false);
 
   // Local state for forms
   const [heroForm, setHeroForm] = useState({
     heroTitle: landingData?.heroTitle || '',
     heroDesc: landingData?.heroDesc || '',
+    heroImage: landingData?.heroImage || '/sk-officials.png',
   });
 
   const [contactForm, setContactForm] = useState({
@@ -39,6 +42,22 @@ export default function LandingPageManager() {
   const triggerSaveAlert = () => {
     setIsSaved(true);
     setTimeout(() => setIsSaved(false), 2000);
+  };
+
+  const handleHeroImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    setUploadingHero(true);
+    try {
+      const result = await storageService.uploadFile('documents', file, `assets/hero_${Date.now()}_${file.name}`);
+      setHeroForm({ ...heroForm, heroImage: result.url });
+    } catch (err) {
+      console.error('Failed to upload hero image:', err);
+      alert('Upload failed: ' + err.message);
+    } finally {
+      setUploadingHero(false);
+    }
   };
 
   const handleEditOfficial = (off) => {
@@ -150,6 +169,37 @@ export default function LandingPageManager() {
               value={heroForm.heroDesc} 
               onChange={e => setHeroForm({ ...heroForm, heroDesc: e.target.value })} 
             />
+          </div>
+
+          <div className="form-group" style={{ marginBottom: '1.5rem' }}>
+            <label>Hero Image (High Resolution supported)</label>
+            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+              <input 
+                type="text" 
+                className="form-control" 
+                placeholder="Image URL" 
+                value={heroForm.heroImage} 
+                onChange={e => setHeroForm({ ...heroForm, heroImage: e.target.value })} 
+                style={{ flex: 1 }} 
+              />
+              <input 
+                type="file" 
+                accept="image/*" 
+                id="hero-image-upload" 
+                style={{ display: 'none' }} 
+                onChange={handleHeroImageUpload} 
+              />
+              <label 
+                htmlFor="hero-image-upload" 
+                className="btn btn-secondary" 
+                style={{ margin: 0, cursor: 'pointer', whiteSpace: 'nowrap', opacity: uploadingHero ? 0.5 : 1, pointerEvents: uploadingHero ? 'none' : 'auto' }}
+              >
+                {uploadingHero ? 'Uploading...' : 'Upload Image'}
+              </label>
+            </div>
+            {heroForm.heroImage && (
+               <div style={{ marginTop: '0.5rem', width: '200px', height: '140px', borderRadius: '8px', background: `url(${heroForm.heroImage}) center/cover no-repeat`, border: '1px solid var(--border-default)' }} />
+            )}
           </div>
 
           <button className="btn btn-primary" onClick={handleSaveHero}><MdSave /> Save Hero Content</button>
