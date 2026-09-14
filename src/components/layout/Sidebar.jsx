@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import {
   MdDashboard, MdFolder, MdDescription, MdAccountBalance,
   MdReceipt, MdAttachFile, MdCalendarToday, MdAssessment,
-  MdHistory, MdPeople, MdChevronLeft, MdChevronRight, MdLogout
+  MdHistory, MdPeople, MdChevronLeft, MdChevronRight, MdLogout, MdWeb
 } from 'react-icons/md';
 import RoleManager from '../../auth/RoleManager';
 import { NAV_ITEMS, APP_CONFIG } from '../../utils/constants';
@@ -13,7 +13,7 @@ import './Sidebar.css';
 const ICON_MAP = {
   MdDashboard, MdFolder, MdDescription, MdAccountBalance,
   MdReceipt, MdAttachFile, MdCalendarToday, MdAssessment,
-  MdHistory, MdPeople
+  MdHistory, MdPeople, MdWeb
 };
 
 /**

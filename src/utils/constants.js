@@ -255,6 +255,7 @@ export const PERMISSIONS = {
     'export:reports': true,
     'manage:users': true,
     'view:audit_logs': true,
+    'manage:landing_page': true,
   },
   [ROLES.TREASURER]: {
     'view:dashboard': true,
@@ -324,6 +325,7 @@ export const PERMISSIONS = {
     'export:reports': true,
     'manage:users': true,
     'view:audit_logs': true,
+    'manage:landing_page': true,
   },
 };
 
@@ -339,6 +341,7 @@ export const NAV_ITEMS = [
   { key: 'reports', label: 'Reports', icon: 'MdAssessment', path: '/reports', permission: 'view:reports' },
   { key: 'audit', label: 'Audit Log', icon: 'MdHistory', path: '/audit', permission: 'view:audit_logs' },
   { key: 'users', label: 'Users', icon: 'MdPeople', path: '/users', permission: 'manage:users' },
+  { key: 'landing_manager', label: 'Landing Editor', icon: 'MdWeb', path: '/landing-editor', permission: 'manage:landing_page' },
 ];
 
 // ─── Project Categories ───────────────────────────────────

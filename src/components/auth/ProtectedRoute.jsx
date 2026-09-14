@@ -7,7 +7,7 @@ import PermissionGate from './PermissionGate';
  * SKTrack — ProtectedRoute
  * Route wrapper that ensures the user is authenticated and optionally has a specific permission.
  */
-export default function ProtectedRoute({ permission }) {
+export default function ProtectedRoute({ permission, children }) {
   const { isAuthenticated, loading, user } = useAuth();
 
   if (loading) {
@@ -27,14 +27,14 @@ export default function ProtectedRoute({ permission }) {
     return <Navigate to="/pending" replace />;
   }
 
-  // If a permission is required for this route, wrap the Outlet in a PermissionGate
+  // If a permission is required for this route, wrap the content in a PermissionGate
   if (permission) {
     return (
       <PermissionGate permission={permission} fallback={<Navigate to="/" replace />}>
-        <Outlet />
+        {children ? children : <Outlet />}
       </PermissionGate>
     );
   }
 
-  return <Outlet />;
+  return children ? children : <Outlet />;
 }

@@ -21,6 +21,7 @@ import ReportsPage from './pages/ReportsPage';
 import AuditLogPage from './pages/AuditLogPage';
 import UserManagementPage from './pages/UserManagementPage';
 import NotFoundPage from './pages/NotFoundPage';
+import LandingPageManager from './pages/LandingPageManager';
 import { auditLogService } from './services/AuditLogService';
 import { projectController } from './controllers/ProjectController';
 import { proposalController } from './controllers/ProposalController';
@@ -114,6 +115,8 @@ export default function App() {
           <Route element={<AppLayout onLogout={handleLogout} />}>
             <Route index element={<DashboardPage />} />
             
+            <Route path="landing-editor" element={<ProtectedRoute permission="manage:landing_page"><LandingPageManager /></ProtectedRoute>} />
+
             <Route path="projects" element={<ProtectedRoute permission="view:projects" />}>
               <Route index element={<ProjectListPage />} />
               <Route path=":id" element={<ProjectDetailPage />} />

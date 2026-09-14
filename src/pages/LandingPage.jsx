@@ -1,22 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   MdLogin, MdLocationOn, MdPeople, MdAccountBalance, 
-  MdVerified, MdOpenInNew, MdPhone, MdEmail, MdFolderSpecial 
+  MdVerified, MdOpenInNew, MdPhone, MdEmail, MdFolderSpecial,
+  MdMenu, MdClose, MdInfo, MdGroup, MdContacts
 } from 'react-icons/md';
+import useLandingPageManager from '../hooks/useLandingPageManager';
 import './LandingPage.css';
 
 export default function LandingPage() {
   const navigate = useNavigate();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const officials = [
-    { name: 'SK Chairperson', role: 'Executive Head & Ex-Officio Member', desc: 'Leads the SK Council, presides over youth policy & budget authorizations.', icon: '👑' },
-    { name: 'SK Secretary', role: 'Records & Communications', desc: 'Maintains official minutes, resolution archives, and public notices.', icon: '📜' },
-    { name: 'SK Treasurer', role: 'Financial Management', desc: 'Manages the 10% SK Fund allocations, statutory limits, and financial reports.', icon: '⚖️' },
-    { name: 'SK Kagawad (Youth Welfare)', role: 'Committee Chair', desc: 'Oversees youth health, wellness, and social development programs.', icon: '🌱' },
-    { name: 'SK Kagawad (Sports & Culture)', role: 'Committee Chair', desc: 'Organizes sports festivals, cultural activities, and youth tournaments.', icon: '🏆' },
-    { name: 'SK Kagawad (Education & Tech)', role: 'Committee Chair', desc: 'Drives educational assistance, digital literacy, and skill workshops.', icon: '🎓' }
-  ];
+  const toggleMobileMenu = () => setMobileMenuOpen(prev => !prev);
+  const closeMobileMenu = () => setMobileMenuOpen(false);
+
+  const { landingData } = useLandingPageManager();
 
   return (
     <div className="landing-page">
@@ -37,11 +36,26 @@ export default function LandingPage() {
             <a href="#contact" className="landing-nav-item">Contact & Location</a>
           </div>
 
-          <button className="btn btn-primary landing-login-btn" onClick={() => navigate('/login')}>
-            <MdLogin size={18} /> Official Portal Login
+
+          {/* Mobile hamburger toggle — only visible on phone */}
+          <button className="landing-mobile-toggle" onClick={toggleMobileMenu} aria-label="Toggle menu">
+            {mobileMenuOpen ? <MdClose size={24} /> : <MdMenu size={24} />}
           </button>
         </div>
       </header>
+
+      {/* ── Mobile Menu Drawer ── */}
+      <div className={`landing-mobile-menu${mobileMenuOpen ? ' open' : ''}`}>
+        <a href="#about" className="landing-mobile-link" onClick={closeMobileMenu}>
+          <MdInfo size={20} /> About
+        </a>
+        <a href="#officials" className="landing-mobile-link" onClick={closeMobileMenu}>
+          <MdGroup size={20} /> SK Officials
+        </a>
+        <a href="#contact" className="landing-mobile-link" onClick={closeMobileMenu}>
+          <MdContacts size={20} /> Contact & Location
+        </a>
+      </div>
 
       {/* ── Hero Section ── */}
       <section className="landing-hero">
@@ -51,13 +65,10 @@ export default function LandingPage() {
             <MdVerified size={16} /> Official Portal — Sangguniang Kabataan Diatagon
           </div>
           
-          <h1 className="landing-hero-title">
-            Empowering the Youth of <span className="text-highlight">Barangay Diatagon</span>
-          </h1>
+          <h1 className="landing-hero-title" dangerouslySetInnerHTML={{ __html: landingData?.heroTitle || '' }} />
 
           <p className="landing-hero-desc">
-            Welcome to the centralized monitoring portal for Barangay Diatagon, Lianga, Surigao del Sur. 
-            Streamlining SK project proposals, 10% Barangay General Fund management, and youth development records.
+            {landingData.heroDesc}
           </p>
 
           <div className="landing-hero-actions">
@@ -65,8 +76,9 @@ export default function LandingPage() {
               <MdLogin size={20} /> Access Portal Login
             </button>
             <a 
-              href="https://www.facebook.com/sk.diatagon" 
+              href={landingData.facebookLink} 
               target="_blank" 
+
               rel="noopener noreferrer" 
               className="btn btn-secondary btn-lg"
             >
@@ -94,7 +106,7 @@ export default function LandingPage() {
             <div className="landing-stat-card">
               <div className="landing-stat-icon"><MdPeople size={24} /></div>
               <div>
-                <div className="landing-stat-val">1.5K+</div>
+                <div className="landing-stat-val">{landingData.facebookFollowers}</div>
                 <div className="landing-stat-lbl">Facebook Followers</div>
               </div>
             </div>
@@ -102,8 +114,8 @@ export default function LandingPage() {
             <div className="landing-stat-card">
               <div className="landing-stat-icon"><MdLocationOn size={24} /></div>
               <div>
-                <div className="landing-stat-val">Purok 2</div>
-                <div className="landing-stat-lbl">Diatagon, Lianga, Surigao del Sur</div>
+                <div className="landing-stat-val">{landingData.shortLocation}</div>
+                <div className="landing-stat-lbl">Lianga, Surigao del Sur</div>
               </div>
             </div>
 
@@ -157,14 +169,26 @@ export default function LandingPage() {
           </div>
 
           <div className="officials-grid">
-            {officials.map((official, idx) => (
-              <div key={idx} className="card official-card">
-                <div className="official-avatar-placeholder">
-                  <span className="official-emoji">{official.icon}</span>
+            {(landingData?.officials || []).map((official, idx) => (
+              <div key={idx} className="card official-card" style={{ 
+                position: 'relative',
+                background: (official.icon && (official.icon.startsWith('http') || official.icon.startsWith('/') || official.icon.startsWith('data:'))) ? `url(${official.icon}) center/cover no-repeat` : '#1a1a2e',
+                color: 'white',
+                minHeight: '220px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                textAlign: 'center',
+                overflow: 'hidden',
+                padding: '1.5rem',
+                border: 'none'
+              }}>
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.6)', zIndex: 1 }} />
+                <div style={{ position: 'relative', zIndex: 2 }}>
+                  <h3 className="official-title" style={{ color: 'white', marginBottom: '0.25rem', fontSize: '1.25rem' }}>{official.name}</h3>
+                  <div className="official-role" style={{ color: '#93c5fd', fontSize: '0.9rem', margin: 0 }}>{official.role}</div>
                 </div>
-                <h3 className="official-title">{official.name}</h3>
-                <div className="official-role">{official.role}</div>
-                <p className="official-desc">{official.desc}</p>
               </div>
             ))}
           </div>
@@ -186,7 +210,7 @@ export default function LandingPage() {
                   <MdLocationOn size={22} className="contact-icon" />
                   <div>
                     <strong>Office Location:</strong>
-                    <div>Purok 2, Diatagon, Lianga, Surigao del Sur, 8307</div>
+                    <div>{landingData.location}</div>
                   </div>
                 </div>
 
@@ -195,8 +219,8 @@ export default function LandingPage() {
                   <div>
                     <strong>Facebook Page:</strong>
                     <div>
-                      <a href="https://www.facebook.com/sk.diatagon" target="_blank" rel="noopener noreferrer">
-                        facebook.com/sk.diatagon (1.5K Followers)
+                      <a href={landingData.facebookLink} target="_blank" rel="noopener noreferrer">
+                        {landingData.facebookLink.replace('https://www.', '')} ({landingData.facebookFollowers} Followers)
                       </a>
                     </div>
                   </div>

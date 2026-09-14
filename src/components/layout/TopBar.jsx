@@ -1,5 +1,5 @@
 import React from 'react';
-import { MdMenu, MdNotifications, MdSearch } from 'react-icons/md';
+import { MdMenu, MdNotifications, MdSearch, MdPerson } from 'react-icons/md';
 import RoleManager from '../../auth/RoleManager';
 import { ROLE_LABELS } from '../../utils/constants';
 import { getInitials } from '../../utils/formatters';
@@ -40,15 +40,12 @@ export default function TopBar({ onMenuToggle, pageTitle }) {
         </button>
 
         {/* User */}
-        <div className="topbar-user">
-          <div className="avatar avatar-sm">
-            {user ? getInitials(user.full_name) : '?'}
+        <div className="topbar-user" style={{ cursor: 'pointer' }}>
+          <div className="avatar avatar-sm" style={{ background: 'var(--bg-elevated)', color: 'var(--text-secondary)' }}>
+            <MdPerson size={20} />
           </div>
           <div className="topbar-user-info hide-mobile">
-            <span className="topbar-user-name">{user?.full_name || 'User'}</span>
-            <span className="topbar-user-role">
-              {user ? ROLE_LABELS[user.role] || user.role : 'Guest'}
-            </span>
+            <span className="topbar-user-name">Profile</span>
           </div>
         </div>
       </div>
