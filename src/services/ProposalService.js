@@ -11,7 +11,7 @@ export class ProposalService extends BaseService {
   }
 
   async getAllWithDetails(options = {}) {
-    const select = options.select || '*, profiles:proponent_id(full_name, avatar_url)';
+    const select = options.select || '*, profiles!submitted_by(full_name, avatar_url)';
     return super.getAll({ ...options, select });
   }
 }

@@ -10,7 +10,7 @@ export class ScheduleController extends BaseController {
   async loadActivities(filters = {}) {
     this.setLoading(true);
     try {
-      const result = await this.service.getAllWithDetails({ filters, orderBy: 'start_time', orderAsc: true });
+      const result = await this.service.getAllWithDetails({ filters, orderBy: 'date', orderAsc: true });
       this.setData({ activities: result.data || [] });
     } catch (error) {
       this.handleError(error);

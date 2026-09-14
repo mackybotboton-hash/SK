@@ -136,3 +136,20 @@ body, input, button, select, textarea {
   letter-spacing: 0.05em;
   font-weight: 600;
 }
+
+/* ─── Responsive Typography ─── */
+@media (max-width: 480px) {
+  .heading-display {
+    font-size: var(--text-3xl);
+  }
+  .heading-page {
+    font-size: var(--text-xl);
+  }
+  .heading-section {
+    font-size: var(--text-lg);
+  }
+  .text-currency-large {
+    font-size: var(--text-2xl);
+  }
+}
+

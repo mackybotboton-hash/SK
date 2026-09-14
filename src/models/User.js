@@ -21,7 +21,6 @@ export class User extends BaseModel {
   toJSON() {
     return {
       ...super.toJSON(),
-      email: this.email,
       full_name: this.full_name,
       role: this.role,
       status: this.status

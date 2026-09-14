@@ -4,7 +4,7 @@ import Expense from '../models/Expense';
 
 export class BudgetService extends BaseService {
   constructor() {
-    super('budgets', Budget);
+    super('project_budgets', Budget);
   }
 }
 

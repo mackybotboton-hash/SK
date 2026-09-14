@@ -8,13 +8,13 @@ import { PROPOSAL_STATUS } from '../utils/constants';
 export class Proposal extends BaseModel {
   constructor(data = {}) {
     super(data);
-    this.title = data.title || '';
-    this.objective = data.objective || '';
-    this.target_date = data.target_date ? new Date(data.target_date) : null;
-    this.estimated_budget = Number(data.estimated_budget) || 0;
-    this.proponent_id = data.proponent_id || null;
+    this.title = data.title || data.project_name || '';
+    this.objective = data.objective || data.objectives || '';
+    this.target_date = data.target_date ? new Date(data.target_date) : (data.proposed_start ? new Date(data.proposed_start) : null);
+    this.estimated_budget = Number(data.estimated_budget) || Number(data.proposed_budget) || 0;
+    this.proponent_id = data.proponent_id || data.submitted_by || null;
     this.status = data.status || PROPOSAL_STATUS.DRAFT;
-    this.feedback = data.feedback || '';
+    this.feedback = data.feedback || data.review_notes || '';
   }
 
   get validationRules() {
@@ -29,13 +29,13 @@ export class Proposal extends BaseModel {
   toJSON() {
     return {
       ...super.toJSON(),
-      title: this.title,
-      objective: this.objective,
-      target_date: this.target_date ? this.target_date.toISOString().split('T')[0] : null,
-      estimated_budget: this.estimated_budget,
-      proponent_id: this.proponent_id,
+      project_name: this.title,
+      objectives: this.objective,
+      proposed_start: this.target_date ? this.target_date.toISOString().split('T')[0] : null,
+      proposed_budget: this.estimated_budget,
+      submitted_by: this.proponent_id,
       status: this.status,
-      feedback: this.feedback
+      review_notes: this.feedback
     };
   }
 

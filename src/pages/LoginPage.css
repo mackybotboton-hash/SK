@@ -4,12 +4,14 @@
 
 .login-page {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #f8fafc;
   position: relative;
   overflow: hidden;
+  overflow-y: auto;
   padding: var(--space-4);
 }
 
@@ -116,4 +118,43 @@
   color: var(--text-muted);
   margin-top: 1.5rem;
   font-weight: 500;
+}
+
+/* ─── Mobile: Small Phone (≤ 480px) ─── */
+@media (max-width: 480px) {
+  .login-page {
+    padding: var(--space-4);
+    align-items: flex-start;
+    padding-top: env(safe-area-inset-top, var(--space-8));
+  }
+
+  .login-container {
+    max-width: none;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+
+  .login-logo-container {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 1rem;
+  }
+
+  .login-title {
+    font-size: var(--text-xl);
+  }
+
+  .login-header {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* ─── Prevent iOS auto-zoom on login form inputs ─── */
+@media (max-width: 768px) {
+  .login-form input,
+  .login-form select,
+  .login-form textarea {
+    font-size: 16px;
+  }
 }

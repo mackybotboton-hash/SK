@@ -7,7 +7,7 @@ export class DocumentService extends BaseService {
   }
 
   async getAllWithDetails(options = {}) {
-    const select = options.select || '*, projects:project_id(name), profiles:uploaded_by(full_name)';
+    const select = options.select || '*, profiles!uploaded_by(full_name)';
     return super.getAll({ ...options, select });
   }
 }

@@ -73,22 +73,22 @@ export default function BudgetPage() {
       <PageHeader title="Financial Planning & Budgeting" description="Manage SK Fund limits, ABYIP allocations, and Authorizations" />
 
       {/* Tabs */}
-      <div style={{ display: 'flex', gap: '1rem', borderBottom: '1px solid var(--border-strong)', marginBottom: '2rem' }}>
+      <div className="budget-tabs" style={{ display: 'flex', gap: '1rem', borderBottom: '1px solid var(--border-strong)', marginBottom: '2rem', overflowX: 'auto', paddingBottom: '2px' }}>
         <button 
           onClick={() => setActiveTab('setup')} 
-          style={{ background: 'none', border: 'none', borderBottom: activeTab === 'setup' ? '2px solid var(--color-primary-500)' : '2px solid transparent', padding: '0.5rem 1rem', color: activeTab === 'setup' ? 'var(--color-primary-500)' : 'var(--text-secondary)', cursor: 'pointer', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+          style={{ background: 'none', border: 'none', borderBottom: activeTab === 'setup' ? '2px solid var(--color-primary-500)' : '2px solid transparent', padding: '0.5rem 1rem', color: activeTab === 'setup' ? 'var(--color-primary-500)' : 'var(--text-secondary)', cursor: 'pointer', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}
         >
           <MdAccountBalance /> 1. SK Fund Setup
         </button>
         <button 
           onClick={() => setActiveTab('allocation')} 
-          style={{ background: 'none', border: 'none', borderBottom: activeTab === 'allocation' ? '2px solid var(--color-primary-500)' : '2px solid transparent', padding: '0.5rem 1rem', color: activeTab === 'allocation' ? 'var(--color-primary-500)' : 'var(--text-secondary)', cursor: 'pointer', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+          style={{ background: 'none', border: 'none', borderBottom: activeTab === 'allocation' ? '2px solid var(--color-primary-500)' : '2px solid transparent', padding: '0.5rem 1rem', color: activeTab === 'allocation' ? 'var(--color-primary-500)' : 'var(--text-secondary)', cursor: 'pointer', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}
         >
           <MdAssignment /> 2. Annual Budget Allocation
         </button>
         <button 
           onClick={() => setActiveTab('auth')} 
-          style={{ background: 'none', border: 'none', borderBottom: activeTab === 'auth' ? '2px solid var(--color-primary-500)' : '2px solid transparent', padding: '0.5rem 1rem', color: activeTab === 'auth' ? 'var(--color-primary-500)' : 'var(--text-secondary)', cursor: 'pointer', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+          style={{ background: 'none', border: 'none', borderBottom: activeTab === 'auth' ? '2px solid var(--color-primary-500)' : '2px solid transparent', padding: '0.5rem 1rem', color: activeTab === 'auth' ? 'var(--color-primary-500)' : 'var(--text-secondary)', cursor: 'pointer', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}
         >
           <MdSecurity /> 3. Authorization & Review
         </button>
@@ -121,16 +121,16 @@ export default function BudgetPage() {
       )}
 
       {activeTab === 'allocation' && (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '2rem' }}>
+        <div className="layout-with-sidebar">
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             {/* PPAs */}
             <div className="card">
               <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>ABYIP Programs, Projects & Activities (PPAs)</h3>
               
-              <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }}>
-                <input type="text" className="form-control" placeholder="PPA Name" value={newPpaName} onChange={e => setNewPpaName(e.target.value)} />
-                <FormattedNumberInput className="form-control" placeholder="Budget Amount" value={newPpaBudget} onChange={val => setNewPpaBudget(val)} style={{ width: '180px' }} />
+              <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
+                <input type="text" className="form-control" placeholder="PPA Name" value={newPpaName} onChange={e => setNewPpaName(e.target.value)} style={{ flex: '1 1 200px' }} />
+                <FormattedNumberInput className="form-control" placeholder="Budget Amount" value={newPpaBudget} onChange={val => setNewPpaBudget(val)} style={{ flex: '0 1 180px' }} />
                 <button className="btn btn-secondary" onClick={handleAddPPA}><MdAdd /> Add</button>
               </div>
 
@@ -152,7 +152,7 @@ export default function BudgetPage() {
             <div className="card">
               <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>Statutory Allocations</h3>
               
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+              <div className="form-row-2col">
                 <div className="form-group">
                   <label>Personal Services (Max 25%)</label>
                   <FormattedNumberInput className="form-control" value={psAmount} onChange={val => setPsAmount(val)} placeholder="0.00" />

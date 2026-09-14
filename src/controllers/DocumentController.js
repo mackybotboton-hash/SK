@@ -1,6 +1,7 @@
 import BaseController from './BaseController';
 import documentService from '../services/DocumentService';
 import NotificationSystem from '../engines/NotificationSystem';
+import storageService from '../services/StorageService';
 
 export class DocumentController extends BaseController {
   constructor() {
@@ -25,6 +26,19 @@ export class DocumentController extends BaseController {
     try {
       if (!document.validate()) {
         throw new Error(document.getValidationErrors()[0]?.message);
+      }
+
+      // Handle file upload if a file was selected
+      if (document.fileToUpload) {
+        try {
+          const uploadResult = await storageService.uploadFile('documents', document.fileToUpload);
+          document.url = uploadResult.url;
+          document.size_bytes = uploadResult.size;
+          // Clear transient property so it isn't sent in JSON if we clone later
+          document.fileToUpload = null; 
+        } catch (uploadError) {
+          throw new Error('Failed to upload file to storage: ' + uploadError.message);
+        }
       }
 
       let saved;

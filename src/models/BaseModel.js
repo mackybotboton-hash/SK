@@ -2,6 +2,20 @@
  * SKTrack — BaseModel
  * Abstract base class for all domain models.
  * Provides validation, serialization, and common computed properties.
+ * 
+ * ============================================================================
+ * ⚠️ FIELD-MAPPING PATTERN ⚠️
+ * All models MUST explicitly map between frontend state and database columns.
+ * 
+ * 1. constructor(data): Map DB columns -> Frontend fields
+ *    Example: this.title = data.title || data.project_name || '';
+ * 
+ * 2. toJSON(): Map Frontend fields -> DB columns
+ *    Example: { project_name: this.title }
+ * 
+ * 3. Validation: Rules evaluate against FRONTEND fields (e.g. 'title'), 
+ *    and must run BEFORE toJSON() translation.
+ * ============================================================================
  */
 
 export class BaseModel {
@@ -37,10 +51,9 @@ export class BaseModel {
    */
   getValidationErrors() {
     const errors = [];
-    const data = this.toJSON();
 
     for (const rule of this.validationRules) {
-      if (!rule.test(data[rule.field], data)) {
+      if (!rule.test(this[rule.field], this)) {
         errors.push({ field: rule.field, message: rule.message });
       }
     }

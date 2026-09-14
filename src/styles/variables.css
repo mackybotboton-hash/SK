@@ -161,4 +161,15 @@
   --sidebar-collapsed-width: 72px;
   --topbar-height:           64px;
   --content-max-width:       1400px;
+  --bottom-nav-height:       56px;
+
+  /*
+   * ─── Responsive Breakpoint Scale ───
+   * (Documented here for consistency; media queries can't consume CSS vars)
+   *
+   *   ≤ 480px  — small phone   (iPhone SE, compact Android)
+   * 481–767px  — large phone   (iPhone 12–15, Pixel)
+   * 768–1023px — tablet        (iPad portrait, landscape phones)
+   *   ≥1024px  — desktop       (current default, unchanged)
+   */
 }

@@ -10,7 +10,7 @@ export default function PendingApprovalPage() {
   const { logout, user } = useAuth();
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', background: 'var(--bg-body)' }}>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', minHeight: '100dvh', background: 'var(--bg-body)' }}>
       <div className="card glass-panel animate-fade-in-up" style={{ maxWidth: '450px', padding: '3rem 2rem', textAlign: 'center' }}>
         <div style={{ 
           width: '80px', height: '80px', borderRadius: '50%', 

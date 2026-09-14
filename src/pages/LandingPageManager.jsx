@@ -133,14 +133,13 @@ export default function LandingPageManager() {
           <h3 style={{ marginBottom: '1.5rem' }}>Hero Section Editor</h3>
           
           <div className="form-group" style={{ marginBottom: '1.5rem' }}>
-            <label>Hero Title (HTML tags supported for highlight)</label>
+            <label>Hero Title</label>
             <input 
               type="text" 
               className="form-control" 
               value={heroForm.heroTitle} 
               onChange={e => setHeroForm({ ...heroForm, heroTitle: e.target.value })} 
             />
-            <small style={{ color: 'var(--text-tertiary)' }}>Use &lt;span class="text-highlight"&gt;Text&lt;/span&gt; for highlighted words.</small>
           </div>
 
           <div className="form-group" style={{ marginBottom: '1.5rem' }}>

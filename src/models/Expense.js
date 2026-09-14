@@ -4,7 +4,7 @@ export class Expense extends BaseModel {
   constructor(data = {}) {
     super(data);
     this.project_id = data.project_id || null;
-    this.budget_category = data.budget_category || '';
+    this.budget_category = data.budget_category || data.category || '';
     this.amount = Number(data.amount) || 0;
     this.description = data.description || '';
     this.date = data.date ? new Date(data.date) : new Date();
@@ -25,12 +25,11 @@ export class Expense extends BaseModel {
     return {
       ...super.toJSON(),
       project_id: this.project_id,
-      budget_category: this.budget_category,
+      category: this.budget_category,
       amount: this.amount,
       description: this.description,
       date: this.date ? this.date.toISOString().split('T')[0] : null,
-      receipt_url: this.receipt_url,
-      status: this.status
+      receipt_url: this.receipt_url
     };
   }
 }

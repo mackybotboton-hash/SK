@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import TopBar from './TopBar';
+import BottomNav from './BottomNav';
 
 /**
  * AppLayout — Main application shell.
- * Wraps Sidebar + TopBar + content area.
+ * Wraps Sidebar + TopBar + BottomNav + content area.
  * Uses React Router's <Outlet /> for nested page rendering.
  */
 export default function AppLayout({ onLogout, pageTitle }) {
@@ -17,6 +18,18 @@ export default function AppLayout({ onLogout, pageTitle }) {
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.classList.add('body-scroll-locked');
+    } else {
+      document.body.classList.remove('body-scroll-locked');
+    }
+    return () => {
+      document.body.classList.remove('body-scroll-locked');
+    };
+  }, [mobileMenuOpen]);
 
   const handleToggleSidebar = () => {
     setSidebarCollapsed((prev) => !prev);
@@ -54,6 +67,9 @@ export default function AppLayout({ onLogout, pageTitle }) {
           onClick={() => setMobileMenuOpen(false)}
         />
       )}
+
+      {/* Persistent bottom tab bar (mobile only, hidden on desktop via CSS) */}
+      <BottomNav onMoreClick={handleMobileMenuToggle} />
     </div>
   );
 }

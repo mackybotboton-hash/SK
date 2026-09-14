@@ -22,9 +22,9 @@ export class AuditLog extends BaseModel {
       ...super.toJSON(),
       user_id: this.user_id,
       action: this.action,
-      resource: this.resource,
-      resource_id: this.resource_id,
-      details: this.details
+      entity_type: this.resource,
+      entity_id: this.resource_id,
+      details: typeof this.details === 'string' && this.details.trim() !== '' ? JSON.parse(this.details) : this.details || {}
     };
   }
 }

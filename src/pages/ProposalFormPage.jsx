@@ -95,7 +95,7 @@ export default function ProposalFormPage() {
             {errors.title && <span style={{ color: 'var(--danger)', fontSize: '0.875rem' }}>{errors.title}</span>}
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+          <div className="form-row-2col">
             <div className="form-group">
               <label>Estimated Budget (₱) *</label>
               <FormattedNumberInput 

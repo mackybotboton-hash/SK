@@ -269,6 +269,86 @@
 .data-table tbody tr:last-child td { border-bottom: none; }
 
 /* ═══════════════════════════════════════════════
+   DATA TABLE → CARD LIST ON MOBILE (≤ 768px)
+   Uses data-label attribute on <td> for column headers.
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .data-table-wrapper {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    overflow-x: visible;
+  }
+
+  .data-table {
+    border: none;
+  }
+
+  .data-table thead {
+    display: none;
+  }
+
+  .data-table tbody {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .data-table tbody tr {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    box-shadow: var(--shadow-sm);
+    gap: var(--space-2);
+    cursor: pointer;
+  }
+
+  .data-table tbody tr:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-medium);
+  }
+
+  .data-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0;
+    border-bottom: none;
+    gap: var(--space-2);
+  }
+
+  .data-table td::before {
+    content: attr(data-label);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    min-width: 100px;
+    padding-top: 0.1rem;
+  }
+
+  /* Hide the data-label prefix on action cells */
+  .data-table td[data-label="Actions"]::before,
+  .data-table td[data-label=""]::before {
+    display: none;
+  }
+
+  /* Action cells: full width, flex row */
+  .data-table td[data-label="Actions"] {
+    justify-content: flex-end;
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--border-light);
+    margin-top: var(--space-1);
+  }
+}
+
+/* ═══════════════════════════════════════════════
    MODAL / DIALOG
    ═══════════════════════════════════════════════ */
 
@@ -277,6 +357,7 @@
   inset: 0;
   background: rgba(15, 23, 42, 0.4);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -294,11 +375,18 @@
   box-shadow: var(--shadow-xl);
   border: 1px solid var(--border-default);
   animation: modalSlideUp 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes modalSlideUp {
   from { opacity: 0; transform: translateY(12px) scale(0.98); }
   to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes bottomSheetUp {
+  from { opacity: 0; transform: translateY(100%); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .modal-header {
@@ -307,6 +395,7 @@
   justify-content: space-between;
   padding: 1.25rem 1.5rem;
   border-bottom: 1px solid var(--border-default);
+  flex-shrink: 0;
 }
 
 .modal-title {
@@ -320,8 +409,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--radius-md);
   color: var(--text-tertiary);
   background: transparent;
@@ -335,7 +424,11 @@
   color: var(--text-primary);
 }
 
-.modal-body { padding: 1.5rem; }
+.modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+}
 
 .modal-footer {
   display: flex;
@@ -345,6 +438,52 @@
   padding: 1rem 1.5rem;
   border-top: 1px solid var(--border-default);
   background: #f8fafc;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════
+   MODAL → BOTTOM SHEET ON MOBILE (≤ 768px)
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal {
+    max-width: 100%;
+    max-height: 90vh;
+    max-height: 90dvh;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    animation: bottomSheetUp 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    border-bottom: none;
+  }
+
+  .modal-header {
+    padding: 1rem var(--space-4);
+  }
+
+  .modal-close {
+    width: 44px;
+    height: 44px;
+  }
+
+  .modal-body {
+    padding: var(--space-4);
+    padding-bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .modal-footer {
+    flex-direction: column;
+    padding: var(--space-4);
+    padding-bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* ═══════════════════════════════════════════════
@@ -363,3 +502,58 @@
 .alert-error   { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
 .alert-success { background: #ecfdf5; border-color: #a7f3d0; color: #065f46; }
 .alert-warning { background: #fffbeb; border-color: #fde68a; color: #92400e; }
+
+/* ═══════════════════════════════════════════════
+   MOBILE COMPONENT FIXES (≤ 768px)
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  /* Buttons: enforce 44px tap targets */
+  .btn {
+    min-height: 44px;
+  }
+  .btn-sm {
+    min-height: 40px;
+  }
+  .btn-icon {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Prevent iOS auto-zoom on input focus (requires ≥16px font-size) */
+  .form-input,
+  .form-select,
+  .form-textarea,
+  .form-control {
+    font-size: 16px;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   SKELETON LOADING STATES
+   Uses the shimmer keyframe from animations.css
+   ═══════════════════════════════════════════════ */
+
+.skeleton {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-text {
+  height: 1em;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+}
+
+.skeleton-card {
+  height: 120px;
+  border-radius: var(--radius-md);
+}
+
+.skeleton-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}

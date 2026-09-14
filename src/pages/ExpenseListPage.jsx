@@ -39,13 +39,13 @@ export default function ExpenseListPage() {
     <div className="page-enter">
       <PageHeader title="Expenses" description="Record and track project expenditures">
         {hasPermission('manage:expenses') && (
-          <button className="btn btn-primary" onClick={() => { setEditingExpense(null); setIsModalOpen(true); }} style={{ display: 'flex', alignItems: 'center' }}>
-            <MdAdd size={20} style={{ marginRight: '0.25rem' }} /> Log Expense
+          <button className="btn btn-primary" onClick={() => { setEditingExpense(null); setIsModalOpen(true); }}>
+            <MdAdd size={20} /> Log Expense
           </button>
         )}
       </PageHeader>
 
-      <div className="card glass-panel" style={{ marginBottom: '1.5rem', padding: '1rem' }}>
+      <div className="card" style={{ marginBottom: '1.5rem', padding: '1rem' }}>
         <div style={{ position: 'relative', maxWidth: '400px' }}>
           <MdSearch style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-tertiary)' }} size={20} />
           <input 
@@ -59,37 +59,37 @@ export default function ExpenseListPage() {
         </div>
       </div>
 
-      <div className="card glass-panel" style={{ overflowX: 'auto' }}>
+      <div className="data-table-wrapper">
         {loading && expenses.length === 0 ? (
           <div style={{ padding: '3rem', textAlign: 'center' }}><div className="spinner-lg" style={{ margin: '0 auto' }} /></div>
         ) : filteredExpenses.length === 0 ? (
-          <div className="empty-state">
-            <div className="empty-state-icon" style={{ fontSize: '3rem', marginBottom: '1rem' }}><MdReceipt /></div>
-            <p className="empty-state-title" style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)' }}>No expenses logged</p>
+          <div style={{ padding: '3rem', textAlign: 'center' }}>
+            <div style={{ fontSize: '3rem', marginBottom: '1rem', color: 'var(--text-muted)' }}><MdReceipt /></div>
+            <p style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)' }}>No expenses logged</p>
           </div>
         ) : (
-          <table style={{ width: '100%', minWidth: '800px', borderCollapse: 'collapse' }}>
+          <table className="data-table">
             <thead>
-              <tr style={{ borderBottom: '1px solid var(--border-default)', textAlign: 'left' }}>
-                <th style={{ padding: '1rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Date</th>
-                <th style={{ padding: '1rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Description</th>
-                <th style={{ padding: '1rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Category</th>
-                <th style={{ padding: '1rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Amount</th>
-                <th style={{ padding: '1rem', color: 'var(--text-secondary)', fontWeight: 500, textAlign: 'right' }}>Actions</th>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th style={{ textAlign: 'right' }}>Actions</th>
               </tr>
             </thead>
             <tbody>
               {filteredExpenses.map((exp) => (
-                <tr key={exp.id} className="hover-lift" style={{ borderBottom: '1px solid var(--border-default)' }}>
-                  <td style={{ padding: '1rem', color: 'var(--text-secondary)' }}>{formatDate(exp.date)}</td>
-                  <td style={{ padding: '1rem', fontWeight: 500, color: 'var(--text-primary)' }}>{exp.description}</td>
-                  <td style={{ padding: '1rem', color: 'var(--text-secondary)' }}>{exp.budget_category}</td>
-                  <td style={{ padding: '1rem', color: 'var(--text-primary)' }}>{formatCurrency(exp.amount)}</td>
-                  <td style={{ padding: '1rem', textAlign: 'right' }}>
+                <tr key={exp.id}>
+                  <td data-label="Date">{formatDate(exp.date)}</td>
+                  <td data-label="Description" style={{ fontWeight: 500 }}>{exp.description}</td>
+                  <td data-label="Category">{exp.budget_category}</td>
+                  <td data-label="Amount">{formatCurrency(exp.amount)}</td>
+                  <td data-label="Actions" style={{ textAlign: 'right' }}>
                     {hasPermission('manage:expenses') && (
                       <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5rem' }}>
-                        <button className="btn btn-secondary" style={{ padding: '0.5rem' }} onClick={() => handleEdit(exp)}><MdEdit size={16} /></button>
-                        <button className="btn btn-secondary" style={{ padding: '0.5rem', color: 'var(--danger)' }} onClick={() => handleDelete(exp)}><MdDelete size={16} /></button>
+                        <button className="btn btn-secondary btn-icon" onClick={() => handleEdit(exp)} title="Edit"><MdEdit size={16} /></button>
+                        <button className="btn btn-secondary btn-icon" style={{ color: 'var(--danger)' }} onClick={() => handleDelete(exp)} title="Delete"><MdDelete size={16} /></button>
                       </div>
                     )}
                   </td>

@@ -1,0 +1,95 @@
+/**
+ * SKTrack — Bottom Navigation Bar (Mobile Only)
+ * Persistent tab bar for thumb-friendly navigation on phones.
+ * Hidden on desktop via CSS — always in the DOM for fast paint.
+ */
+
+.bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--bottom-nav-height);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border-default);
+  box-shadow: 0 -2px 10px rgba(15, 23, 42, 0.06);
+  z-index: 200;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.bottom-nav-inner {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  height: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-1) var(--space-2);
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.625rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  letter-spacing: 0.02em;
+  transition: color var(--transition-fast);
+  position: relative;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  /* Ensure minimum 44px tap target */
+  min-height: 44px;
+}
+
+.bottom-nav-item:hover,
+.bottom-nav-item:active {
+  color: var(--text-secondary);
+}
+
+.bottom-nav-item.active {
+  color: var(--color-primary-600);
+}
+
+.bottom-nav-item.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 2px;
+  border-radius: 0 0 2px 2px;
+  background: var(--color-primary-600);
+}
+
+.bottom-nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.bottom-nav-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Only visible on mobile */
+@media (max-width: 1024px) {
+  .bottom-nav {
+    display: block;
+  }
+}

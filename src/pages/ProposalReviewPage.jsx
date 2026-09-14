@@ -119,8 +119,8 @@ export default function ProposalReviewPage() {
           <h3 style={{ fontSize: '1.125rem', fontWeight: 600, color: 'var(--text-primary)', margin: 0 }}>Review Actions</h3>
           
           {!showFeedbackBox ? (
-            <div style={{ display: 'flex', gap: '1rem' }}>
-              <button className="btn btn-primary" style={{ background: 'var(--success)' }} onClick={() => handleActionClick('approve')}>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <button className="btn btn-primary" style={{ background: 'var(--color-success)' }} onClick={() => handleActionClick('approve')}>
                 <MdCheck size={20} style={{ marginRight: '0.5rem' }} /> Record Council Approval
               </button>
               <button className="btn btn-secondary" style={{ color: 'var(--danger)', borderColor: 'var(--danger)' }} onClick={() => handleActionClick('reject')}>
@@ -134,7 +134,7 @@ export default function ProposalReviewPage() {
                 <div style={{ background: 'var(--bg-elevated)', padding: '1.5rem', borderRadius: 'var(--radius-lg)', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <h4 style={{ margin: 0, color: 'var(--text-primary)', fontSize: '1rem' }}>SK Council Resolution Details</h4>
                   
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                  <div className="form-row-2col">
                     <div className="form-group">
                       <label>Resolution Number <span className="required">*</span></label>
                       <input type="text" className="form-control" value={resolutionNo} onChange={e => setResolutionNo(e.target.value)} placeholder="e.g. Res. 2026-05" required />
@@ -145,7 +145,7 @@ export default function ProposalReviewPage() {
                     </div>
                   </div>
                   
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                  <div className="form-row-2col">
                     <div className="form-group">
                       <label>Approved Budget Amount (₱) <span className="required">*</span></label>
                       <FormattedNumberInput className="form-control" value={approvedBudget} onChange={val => setApprovedBudget(val)} placeholder="0.00" required />
@@ -178,7 +178,7 @@ export default function ProposalReviewPage() {
                 />
               </div>
 
-              <div style={{ display: 'flex', gap: '1rem' }}>
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                 <button className="btn btn-secondary" onClick={() => setShowFeedbackBox(false)} disabled={loading}>Cancel</button>
                 <button 
                   className="btn btn-primary" 

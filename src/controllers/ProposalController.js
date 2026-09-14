@@ -29,7 +29,7 @@ export class ProposalController extends BaseController {
   async loadProposal(id) {
     this.setLoading(true);
     try {
-      this.currentProposal = await this.service.getById(id, '*, profiles:proponent_id(full_name, avatar_url)');
+      this.currentProposal = await this.service.getById(id, '*, profiles!submitted_by(full_name, avatar_url)');
       this.setData({ proposals: this.proposals, currentProposal: this.currentProposal });
       return this.currentProposal;
     } catch (error) {

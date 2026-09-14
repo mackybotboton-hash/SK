@@ -3,7 +3,8 @@ import BaseModel from './BaseModel';
 export class Budget extends BaseModel {
   constructor(data = {}) {
     super(data);
-    this.category = data.category || '';
+    this.project_id = data.project_id || null;
+    this.category = data.category || data.source || '';
     this.allocated_amount = Number(data.allocated_amount) || 0;
     this.fiscal_year = data.fiscal_year || new Date().getFullYear();
   }
@@ -19,7 +20,8 @@ export class Budget extends BaseModel {
   toJSON() {
     return {
       ...super.toJSON(),
-      category: this.category,
+      project_id: this.project_id,
+      source: this.category,
       allocated_amount: this.allocated_amount,
       fiscal_year: this.fiscal_year
     };

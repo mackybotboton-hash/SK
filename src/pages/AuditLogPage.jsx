@@ -32,9 +32,9 @@ export default function AuditLogPage() {
 
   const getActionColor = (action) => {
     switch (action) {
-      case 'created': return 'var(--success)';
-      case 'updated': return 'var(--info)';
-      case 'deleted': return 'var(--danger)';
+      case 'created': return 'var(--color-success)';
+      case 'updated': return 'var(--color-info)';
+      case 'deleted': return 'var(--color-danger)';
       default: return 'var(--text-secondary)';
     }
   };
@@ -43,7 +43,7 @@ export default function AuditLogPage() {
     <div className="page-enter">
       <PageHeader title="Audit Log" description="Review all administrative and system activity" />
 
-      <div className="card glass-panel" style={{ marginBottom: '1.5rem', padding: '1.5rem' }}>
+      <div className="card" style={{ marginBottom: '1.5rem', padding: '1rem' }}>
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
           <div style={{ position: 'relative', flex: '1', minWidth: '300px' }}>
             <MdSearch style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-tertiary)' }} size={20} />
@@ -73,36 +73,36 @@ export default function AuditLogPage() {
         </div>
       </div>
 
-      <div className="card glass-panel" style={{ overflowX: 'auto' }}>
+      <div className="data-table-wrapper">
         {loading && logs.length === 0 ? (
           <div style={{ padding: '3rem', textAlign: 'center' }}><div className="spinner-lg" style={{ margin: '0 auto' }} /></div>
         ) : filteredLogs.length === 0 ? (
-          <div className="empty-state">
-            <div className="empty-state-icon" style={{ fontSize: '3rem', marginBottom: '1rem' }}><MdHistory /></div>
-            <p className="empty-state-title" style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)' }}>No audit logs found</p>
+          <div style={{ padding: '3rem', textAlign: 'center' }}>
+            <div style={{ fontSize: '3rem', marginBottom: '1rem', color: 'var(--text-muted)' }}><MdHistory /></div>
+            <p style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)' }}>No audit logs found</p>
           </div>
         ) : (
-          <table style={{ width: '100%', minWidth: '800px', borderCollapse: 'collapse' }}>
+          <table className="data-table">
             <thead>
-              <tr style={{ borderBottom: '1px solid var(--border-default)', textAlign: 'left' }}>
-                <th style={{ padding: '1rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Timestamp</th>
-                <th style={{ padding: '1rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Action</th>
-                <th style={{ padding: '1rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Resource</th>
-                <th style={{ padding: '1rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Details</th>
-                <th style={{ padding: '1rem', color: 'var(--text-secondary)', fontWeight: 500 }}>User ID</th>
+              <tr>
+                <th>Timestamp</th>
+                <th>Action</th>
+                <th>Resource</th>
+                <th>Details</th>
+                <th>User ID</th>
               </tr>
             </thead>
             <tbody>
               {filteredLogs.map((log) => (
-                <tr key={log.id} className="hover-lift" style={{ borderBottom: '1px solid var(--border-default)' }}>
-                  <td style={{ padding: '1rem', color: 'var(--text-secondary)', whiteSpace: 'nowrap' }}>
+                <tr key={log.id}>
+                  <td data-label="Timestamp" style={{ whiteSpace: 'nowrap' }}>
                     {new Date(log.created_at).toLocaleString()}
                   </td>
-                  <td style={{ padding: '1rem' }}>
+                  <td data-label="Action">
                     <span style={{ 
                       padding: '0.25rem 0.5rem', 
                       borderRadius: '4px', 
-                      background: 'var(--bg-body)', 
+                      background: 'var(--bg-surface-hover)', 
                       color: getActionColor(log.action),
                       fontWeight: 600,
                       fontSize: '0.75rem',
@@ -111,15 +111,15 @@ export default function AuditLogPage() {
                       {log.action}
                     </span>
                   </td>
-                  <td style={{ padding: '1rem', color: 'var(--text-primary)', fontWeight: 500, textTransform: 'capitalize' }}>
+                  <td data-label="Resource" style={{ fontWeight: 500, textTransform: 'capitalize' }}>
                     {log.resource}
                   </td>
-                  <td style={{ padding: '1rem', color: 'var(--text-secondary)' }}>
+                  <td data-label="Details">
                     <div style={{ maxWidth: '300px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={log.details}>
                       {log.details}
                     </div>
                   </td>
-                  <td style={{ padding: '1rem', color: 'var(--text-tertiary)', fontSize: '0.875rem' }}>
+                  <td data-label="User ID" style={{ color: 'var(--text-tertiary)', fontSize: '0.875rem' }}>
                     {log.user_id || 'System'}
                   </td>
                 </tr>

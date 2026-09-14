@@ -130,6 +130,47 @@ export default function SchedulePage() {
     );
   };
 
+  const renderAgendaView = () => {
+    const monthActivities = activities
+      .filter(a => {
+        const d = new Date(a.start_time);
+        return d.getMonth() === month && d.getFullYear() === year;
+      })
+      .sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
+
+    if (monthActivities.length === 0) {
+      return (
+        <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-tertiary)' }}>
+          No events scheduled for this month.
+        </div>
+      );
+    }
+
+    return monthActivities.map(act => (
+      <div 
+        key={act.id} 
+        onClick={(e) => handleEventClick(e, act)}
+        className="card-flat hover-lift"
+        style={{ cursor: hasPermission('manage:schedules') ? 'pointer' : 'default', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1rem' }}
+      >
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <h4 style={{ margin: 0, color: 'var(--text-primary)', fontSize: '1rem' }}>{act.title}</h4>
+          <span style={{ 
+            fontSize: '0.75rem', padding: '0.25rem 0.5rem', borderRadius: '4px',
+            background: act.type === 'Meeting' ? 'var(--info)' : act.type === 'Deadline' ? 'var(--danger)' : 'var(--primary)',
+            color: 'white'
+          }}>
+            {act.type}
+          </span>
+        </div>
+        <div style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+          <MdEvent size={16} />
+          {new Date(act.start_time).toLocaleDateString()} at {new Date(act.start_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+        </div>
+      </div>
+    ));
+  };
+
   return (
     <div className="page-enter">
       <PageHeader title="Schedule & Activities" description="Manage council meetings, project timelines, and deadlines">
@@ -141,21 +182,29 @@ export default function SchedulePage() {
       </PageHeader>
 
       <div className="card glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
           <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: 'var(--text-primary)', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <MdEvent color="var(--primary)" /> {monthNames[month]} {year}
+            <MdEvent color="var(--color-primary-600)" /> {monthNames[month]} {year}
           </h2>
           <div style={{ display: 'flex', gap: '0.5rem' }}>
-            <button className="btn btn-secondary" onClick={prevMonth} style={{ padding: '0.5rem' }}><MdChevronLeft size={24} /></button>
+            <button className="btn btn-secondary btn-icon" onClick={prevMonth}><MdChevronLeft size={24} /></button>
             <button className="btn btn-secondary" onClick={() => setCurrentDate(new Date())}>Today</button>
-            <button className="btn btn-secondary" onClick={nextMonth} style={{ padding: '0.5rem' }}><MdChevronRight size={24} /></button>
+            <button className="btn btn-secondary btn-icon" onClick={nextMonth}><MdChevronRight size={24} /></button>
           </div>
         </div>
 
-        <div style={{ overflowX: 'auto' }}>
-          <div style={{ minWidth: '800px' }}>
-            {renderCalendar()}
+        {/* Desktop Calendar Grid */}
+        <div className="hide-mobile">
+          <div style={{ overflowX: 'auto' }}>
+            <div style={{ minWidth: '800px' }}>
+              {renderCalendar()}
+            </div>
           </div>
+        </div>
+
+        {/* Mobile Agenda View */}
+        <div className="show-mobile-only" style={{ flexDirection: 'column', width: '100%' }}>
+          {renderAgendaView()}
         </div>
       </div>
 
