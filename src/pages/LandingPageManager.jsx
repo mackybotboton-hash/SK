@@ -267,11 +267,12 @@ export default function LandingPageManager() {
                 minHeight: '200px',
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'center',
+                justifyContent: 'flex-end',
                 alignItems: 'center',
                 textAlign: 'center',
                 overflow: 'hidden',
-                padding: '1rem'
+                padding: '1rem',
+                paddingBottom: '1.5rem'
               }}>
                 <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.6)', zIndex: 1 }} />
                 
