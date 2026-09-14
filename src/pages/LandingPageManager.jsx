@@ -274,14 +274,14 @@ export default function LandingPageManager() {
                 padding: '1rem',
                 paddingBottom: '1.5rem'
               }}>
-                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.6)', zIndex: 1 }} />
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.9) 100%)', zIndex: 1 }} />
                 
                 <div style={{ position: 'absolute', top: '0.5rem', right: '0.5rem', zIndex: 2, display: 'flex', gap: '0.5rem' }}>
                   <button className="btn btn-secondary" style={{ padding: '0.5rem', background: 'white' }} onClick={() => handleEditOfficial(off)}><MdEdit size={16} /></button>
                   <button className="btn btn-secondary" style={{ padding: '0.5rem', background: 'white', color: 'var(--danger)' }} onClick={() => { if(window.confirm('Remove official?')) removeOfficial(off.id); }}><MdDelete size={16} /></button>
                 </div>
                 
-                <div style={{ position: 'relative', zIndex: 2 }}>
+                <div style={{ position: 'relative', zIndex: 2, textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
                   <h4 style={{ margin: '0 0 0.25rem 0', fontSize: '1.1rem', fontWeight: 'bold' }}>{off.name}</h4>
                   <div style={{ color: '#93c5fd', fontSize: '0.8rem', fontWeight: 600 }}>{off.role}</div>
                 </div>

@@ -185,8 +185,8 @@ export default function LandingPage() {
                 paddingBottom: '2rem',
                 border: 'none'
               }}>
-                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.6)', zIndex: 1 }} />
-                <div style={{ position: 'relative', zIndex: 2 }}>
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.9) 100%)', zIndex: 1 }} />
+                <div style={{ position: 'relative', zIndex: 2, textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
                   <h3 className="official-title" style={{ color: 'white', marginBottom: '0.25rem', fontSize: '1.25rem' }}>{official.name}</h3>
                   <div className="official-role" style={{ color: '#93c5fd', fontSize: '0.9rem', margin: 0 }}>{official.role}</div>
                 </div>
